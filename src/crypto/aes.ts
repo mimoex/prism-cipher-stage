@@ -4,6 +4,14 @@ import * as CryptoJS from "crypto-js";
 export type Padding = "None" | "PKCS7";
 export type Mode = "CBC" | "ECB";
 
+// aes.ts の先頭あたりに追加
+type CipherOptions = {
+  mode: any;
+  padding: any;
+  iv?: any;
+};
+
+
 // ---- helpers: Uint8Array ⇄ CryptoJS.WordArray（hex経由なしで高速）
 function u8ToWordArray(u8: Uint8Array): CryptoJS.lib.WordArray {
   const words: number[] = [];
@@ -63,7 +71,7 @@ export function aesEncrypt(params: {
   const wData = u8ToWordArray(plain);
   const wKey  = u8ToWordArray(key);
 
-  const opts: CryptoJS.CipherOption = {
+  const opts: CipherOptions = {
     mode: modeMap[mode],
     padding: padMap[padding],
     ...(mode === "CBC" ? { iv: u8ToWordArray(iv!) } : {}),
@@ -87,7 +95,7 @@ export function aesDecrypt(params: {
   const wCt  = u8ToWordArray(ct);
   const wKey = u8ToWordArray(key);
 
-  const opts: CryptoJS.CipherOption = {
+  const opts: CipherOptions = {
     mode: modeMap[mode],
     padding: padMap[padding],
     ...(mode === "CBC" ? { iv: u8ToWordArray(iv!) } : {}),

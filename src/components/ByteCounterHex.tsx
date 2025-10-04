@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cleanHex } from "@/utils/encoding";
 
 type Props = { value: string; expectedBytes?: number; className?: string };

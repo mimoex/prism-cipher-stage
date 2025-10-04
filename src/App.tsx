@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectItem, SelectTrigger, SelectContent, SelectValue } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { HexInput } from "@/components/HexInput";
 import { HexTextarea } from "@/components/HexTextarea";
 import { fromHex, toHex } from "@/utils/encoding";
